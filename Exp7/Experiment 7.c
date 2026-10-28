@@ -6,18 +6,15 @@
 int stack[SIZE];
 int top = -1;
 
-void push(int x)
-{
+void push(int x) {
     stack[++top] = x;
 }
 
-int pop()
-{
+int pop() {
     return stack[top--];
 }
 
-int main()
-{
+int main() {
     char postfix[SIZE];
     int i;
     int a, b, result;
@@ -25,42 +22,32 @@ int main()
     printf("Enter postfix expression: ");
     scanf("%s", postfix);
 
-    for(i = 0; postfix[i] != '\0'; i++)
-    {
-        if(isdigit(postfix[i]))
-        {
+    for(i = 0; postfix[i] != '\0'; i++) {
+        if(isdigit(postfix[i])) {
             push(postfix[i] - '0');
         }
-        else
-        {
+        else {
             b = pop();
             a = pop();
 
-            switch(postfix[i])
-            {
+            switch(postfix[i]) {
                 case '+':
                     result = a + b;
                     break;
-
                 case '-':
                     result = a - b;
                     break;
-
                 case '*':
                     result = a * b;
                     break;
-
                 case '/':
                     result = a / b;
                     break;
             }
-
             push(result);
         }
     }
-
     printf("Result = %d", pop());
 
     return 0;
 }
-
